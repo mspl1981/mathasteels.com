@@ -3,93 +3,541 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matha Steels Pvt. Ltd.</title>
+    <title>Matha Steels Pvt. Ltd. - Quality Steel Solutions</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Basic Reset & Defaults */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
         }
+
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling for internal links */
+            /* === FIX for sticky header === */
+            /* Adjust this value based on your actual final header height */
+            scroll-padding-top: 115px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa; /* Lighter background */
+        }
+
+        /* Container */
         .container {
-            width: 80%;
+            max-width: 1100px;
             margin: auto;
             overflow: hidden;
-            background: #fff;
-            padding: 20px;
+            padding: 0 20px;
         }
-        h1, h2, h3 {
+
+        /* Header */
+        header {
+            background: #ffffff; /* White header */
             color: #333;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0; /* Softer border */
+            position: sticky; /* Make header sticky */
+            top: 0;
+            z-index: 100;
         }
-        .section {
-            padding: 20px 0;
-            border-bottom: 1px solid #ccc;
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .contact-info {
+
+        header .logo img {
+             /* === Increased Logo Size === */
+            height: 70px; /* Adjusted from 50px - change as needed */
+            width: auto;
+            vertical-align: middle; /* Helps alignment if text is next to it */
+        }
+
+        header .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            vertical-align: middle;
+            margin-left: 10px;
+            color: #0056b3; /* Brand color */
+        }
+
+        nav {
+             display: flex; /* Use flexbox for alignment */
+             align-items: center; /* Vertically center nav items with logo */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #0056b3;
+            background-color: #e7f1ff;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: #ffffff; /* White sections */
+            margin-bottom: 10px; /* Spacing between sections */
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0056b3; /* Brand color for headings */
+            font-size: 2rem;
+        }
+
+        /* Home Section - Option 1: Darker Overlay & Light Text */
+        #home {
+            text-align: center;
+            /* Darker overlay (adjust opacity 0.6 as needed) */
+            background: linear-gradient(rgba(0, 40, 80, 0.6), rgba(0, 40, 80, 0.6)), url('heroImage.jpg') no-repeat center center / cover;
+            color: #ffffff; /* Default text color is now WHITE */
+            padding: 80px 20px; /* Added horizontal padding */
+            display: flex; /* Use flexbox for centering content */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            min-height: 450px; /* Ensure section has enough height to see image */
+            box-sizing: border-box; /* Include padding in height calculation */
+        }
+
+        #home .container {
+            /* Container is used for width constraint if needed */
+             /* max-width: 900px; */
+        }
+
+        #home h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: #ffffff; /* White heading */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Optional: Subtle shadow for extra pop */
+        }
+
+        #home p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto; /* Center paragraph if container is wider */
+            color: #f0f0f0; /* Slightly off-white for paragraph */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Optional: Subtle shadow */
+        }
+        /* End Home Section Styles */
+
+        /* About Section */
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        #about strong {
+            color: #0056b3;
+        }
+
+        /* Products Section */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: #f8f9fa; /* Light background for cards */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* Use flexbox for card layout */
+            flex-direction: column; /* Stack elements vertically */
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2; /* Maintain a consistent aspect ratio */
+            object-fit: cover; /* Cover the area without distortion */
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: block; /* Prevents extra space below image */
+            background-color: #e0e0e0; /* BG color while image loads */
+        }
+
+         .product-card h3 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 0.95rem;
+            color: #555;
+            flex-grow: 1; /* Allow paragraph to take available space */
+        }
+         .product-card p:last-of-type {
+             margin-top: auto; /* Push usage text towards bottom if needed */
+             padding-top: 10px;
+         }
+
+        .product-card p strong {
+            color: #333;
+            display: block; /* Make labels take their own line */
+            margin-bottom: 3px;
+        }
+
+
+        /* Services Section */
+        #services .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping */
+            align-items: center;
+            gap: 40px;
+        }
+
+        #services .service-text {
+            flex: 1;
+            min-width: 300px; /* Prevent text getting too squished */
+        }
+         #services .service-text strong {
+            background-color: #e7f1ff; /* Highlight key benefit */
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #0056b3;
+         }
+
+
+        #services .service-image {
+            flex: 1;
+            text-align: center;
+             min-width: 300px; /* Prevent image getting too squished */
+        }
+
+        #services .service-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #a0a0a0; /* BG color while image loads */
+            aspect-ratio: 4 / 3; /* Give image area a ratio */
+            object-fit: cover; /* Cover area */
+        }
+
+        /* Contact Section */
+        #contact h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-info-container {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: space-around; /* Space out items */
+            gap: 30px; /* Gap between items */
+            text-align: center; /* Center text within each item */
+        }
+
+        .contact-item {
+            flex-basis: 250px; /* Base width for each item */
+            margin-bottom: 20px;
+        }
+         .contact-item h3 {
+             margin-bottom: 15px;
+             color: #0056b3;
+         }
+
+
+        #contact p, #contact address {
+            margin-bottom: 10px;
+            font-style: normal; /* Remove italics from address */
+        }
+
+        #contact a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        #contact a:hover {
+            text-decoration: underline;
+        }
+
+        #contact .phone-number {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            display: block; /* Ensure it takes its own line */
+            margin-top: 5px;
+        }
+
+        .payment-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #28a745; /* Green for payment */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .payment-button:hover {
+            background: #218838; /* Darker green */
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+
+
+        /* Footer */
+        footer {
             background: #333;
             color: #fff;
-            padding: 10px;
             text-align: center;
+            padding: 20px 0;
+            margin-top: 20px; /* Space above footer */
         }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+             html {
+                 /* Adjust scroll padding for potentially smaller header on mobile */
+                 scroll-padding-top: 90px; /* Example adjustment */
+             }
+
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+             header .logo {
+                 margin-bottom: 10px; /* Space between logo and nav on mobile */
+             }
+
+             header .logo img {
+                 height: 60px; /* Slightly smaller logo on mobile */
+             }
+
+            nav {
+                width: 100%; /* Ensure nav takes full width */
+                justify-content: center; /* Center nav items */
+             }
+
+            nav ul {
+                margin-top: 0; /* Remove top margin added earlier */
+                justify-content: center;
+                flex-wrap: wrap; /* Wrap nav items if needed */
+                padding-left: 0; /* Remove default padding */
+            }
+
+            nav ul li {
+                margin: 5px 10px; /* Adjust spacing for smaller screens */
+            }
+
+            #home {
+                min-height: 350px; /* Adjust height for mobile */
+                padding-left: 15px; /* Reduce padding slightly */
+                padding-right: 15px;
+            }
+
+            #home h1 {
+                font-size: 2.2rem;
+            }
+            #home p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-info-container {
+                flex-direction: column; /* Stack contact items vertically */
+                align-items: center; /* Center items when stacked */
+            }
+             .contact-item {
+                 flex-basis: auto; /* Allow items to take full width */
+                 width: 90%; /* Control width when stacked */
+             }
+        }
+
+         @media (max-width: 480px) {
+             #home h1 {
+                 font-size: 1.8rem; /* Further reduce heading size */
+             }
+              #home p {
+                 font-size: 0.9rem; /* Further reduce paragraph size */
+             }
+             nav ul li {
+                 margin: 5px; /* Reduce nav spacing */
+             }
+             .product-grid {
+                 grid-template-columns: 1fr; /* Stack product cards */
+             }
+             #services .container {
+                 gap: 20px; /* Reduce gap */
+             }
+         }
+
     </style>
 </head>
 <body>
-    <div style="text-align: center; padding: 20px;">
-        <img src="Matha_Steel_Log.jpg" alt="Matha Steels Logo" style="width: 150px; height: auto;">
-    </div>
-    <div class="container">
-        <h1>Matha Steels Pvt. Ltd.</h1>
 
-        <div class="section">
-            <h2>Home</h2>
-            <p>Welcome to Matha Steels Pvt. Ltd., your trusted partner in high-quality steel solutions. With years of expertise in the industry, we specialize in delivering top-grade steel products tailored to your needs.</p>
-        </div>
-
-        <div class="section">
-            <h2>About Us</h2>
-            <p>Established in 1981, Matha Steels Pvt. Ltd. has been at the forefront of the steel industry, providing superior flat steel products from leading manufacturers like AMNS, Tata Steelium, Tata Astrum, JSW, Posco, and SAIL.</p>
-        </div>
-
-        <div class="section">
-            <h2>Our Products</h2>
-            <h3>Cold Rolled Close Annealed (CRCA) Sheets</h3>
-            <p>Thickness: 0.3mm to 3mm, Width: 900mm to 1500mm. Used in precision engineering, automotive body panels, and electrical enclosures.</p>
-
-            <h3>Hot Rolled (HR) Sheets & Coils</h3>
-            <p>Thickness: 1.6mm to 20mm, Width: 1250mm to 1500mm. Ideal for structural applications, heavy machinery, and industrial equipment.</p>
-
-            <h3>Galvanized Plain (GP) & Galvanized Corrugated (GC) Sheets</h3>
-            <p>Thickness: 0.3mm to 3mm, Width: 900mm to 1500mm. Used in roofing, fencing, and automotive parts.</p>
-        </div>
-
-        <div class="section">
-            <h2>Custom Steel Processing Services</h2>
-            <p>We offer specialized steel processing services, including cutting, shearing, slitting, and decoiling, tailored to meet your specific project requirements. Our advanced digital weighment scales, integrated e-invoicing, and automated systems ensure **faster turnaround times**, reducing processing delays and improving efficiency.</p>
-        </div>
-
-        <div class="section">
-            <h2>Contact Us</h2>
-            <p><strong>Sales Points:</strong></p>
-            <p><a href="https://g.co/kgs/mLsFcRE" target="_blank">Matha Steels Pvt. Ltd., 29-30 Narasimha St No 2 (SPN Layout), Mill Road, Coimbatore, Tamil Nadu – 641001</a></p>
-            <p><a href="https://g.co/kgs/GrN5yp9" target="_blank">Matha Steels Pvt. Ltd., 19/1, FCI Road, Ganapathy, Coimbatore, Tamil Nadu – 641006</a></p>
-            <p>Email: <a href="mailto:mathasteel@gmail.com">mathasteel@gmail.com</a></p>
-            <p>Phone: <strong>999 440 2226</strong></p>
-        
-            <p>
-                <a href="https://razorpay.me/@mathasteelsprivatelimited" target="_blank"
-                   style="display:inline-block;padding:10px 15px;background:#0070f3;color:#fff;
-                          text-decoration:none;border-radius:5px;margin-top:10px;">
-                   Make a Payment
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#home">
+                     <img src="Matha_Steel_Log.jpg" alt="Matha Steels Pvt. Ltd. Logo">
                 </a>
-            </p>
-</div>
-    </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <div class="contact-info">
-        <p>&copy; <span id="year"></span> Matha Steels Pvt. Ltd. All Rights Reserved.</p>
-        <script>
-            document.getElementById('year').textContent = new Date().getFullYear();
-        </script>
-    </div>
+    <main>
+        <section id="home">
+             <div class="container">
+                 <h1>Matha Steels Pvt. Ltd.</h1>
+                 <p>Your trusted partner in high-quality steel solutions. With years of expertise, we specialize in delivering top-grade steel products tailored to your needs.</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>Established in <strong>1981</strong>, Matha Steels Pvt. Ltd. has been at the forefront of the steel industry. We are proud suppliers of superior flat steel products sourced from leading manufacturers like <strong>AMNS, Tata Steelium, Tata Astrum, JSW, Posco, and SAIL</strong>.</p>
+            </div>
+        </section>
+
+        <section id="products">
+            <div class="container">
+                <h2>Our Products</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="cr.jpg" alt="Cold Rolled Close Annealed Sheet">
+                        <h3>Cold Rolled Close Annealed (CRCA) Sheets</h3>
+                        <p><strong>Thickness:</strong> 0.3mm to 3mm<br><strong>Width:</strong> 900mm to 1500mm</p>
+                        <p>Used in precision engineering, automotive body panels, and electrical enclosures.</p>
+                    </div>
+
+                    <div class="product-card">
+                         <img src="hr.jpg" alt="Hot Rolled Coil">
+                        <h3>Hot Rolled (HR) Sheets & Coils</h3>
+                        <p><strong>Thickness:</strong> 1.6mm to 20mm<br><strong>Width:</strong> 1250mm to 1500mm</p>
+                        <p>Ideal for structural applications, heavy machinery, and industrial equipment.</p>
+                    </div>
+
+                    <div class="product-card">
+                         <img src="gp.jpg" alt="Galvanized Sheet">
+                        <h3>Galvanized Plain (GP) & Galvanized Corrugated (GC) Sheets</h3>
+                        <p><strong>Thickness:</strong> 0.3mm to 3mm<br><strong>Width:</strong> 900mm to 1500mm</p>
+                        <p>Commonly used in roofing, fencing, ducting, and automotive parts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+             <div class="container">
+                 <div class="service-text">
+                    <h2>Custom Steel Processing Services</h2>
+                    <p>We offer specialized steel processing services, including cutting, shearing, slitting, and decoiling, tailored to meet your specific project requirements. Our advanced digital weighment scales, integrated e-invoicing, and automated systems ensure <strong>faster turnaround times</strong>, reducing processing delays and improving overall efficiency for your projects.</p>
+                 </div>
+                 <div class="service-image">
+                    <img src="cutting.jpg" alt="Steel processing machinery">
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-info-container">
+                    <div class="contact-item">
+                        <h3>Sales Point 1</h3>
+                        <address>
+                            <a href="https://g.co/kgs/mLsFcRE" target="_blank" rel="noopener noreferrer">
+                                29-30 Narasimha St No 2 (SPN Layout),<br>
+                                Mill Road, Coimbatore,<br>
+                                Tamil Nadu – 641001
+                            </a>
+                        </address>
+                    </div>
+                     <div class="contact-item">
+                         <h3>Sales Point 2</h3>
+                        <address>
+                            <a href="https://g.co/kgs/GrN5yp9" target="_blank" rel="noopener noreferrer">
+                                19/1, FCI Road, Ganapathy,<br>
+                                Coimbatore, Tamil Nadu – 641006
+                            </a>
+                        </address>
+                    </div>
+                    <div class="contact-item">
+                         <h3>Get In Touch</h3>
+                         <p>Email: <a href="mailto:mathasteel@gmail.com">mathasteel@gmail.com</a></p>
+                         <p>Phone: <a href="tel:+919994402226" class="phone-number">999 440 2226</a></p>
+                    </div>
+                     <div class="contact-item">
+                         <h3>Online Payment</h3>
+                        <p>Conveniently make payments online:</p>
+                        <a href="https://razorpay.me/@mathasteelsprivatelimited" target="_blank" rel="noopener noreferrer" class="payment-button">
+                             Make a Payment
+                        </a>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Matha Steels Pvt. Ltd. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        // Updated for the current date: March 28, 2025
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
 </body>
 </html>
